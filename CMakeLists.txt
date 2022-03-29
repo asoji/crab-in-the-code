@@ -7,11 +7,13 @@ include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} INTERFACE)
 
-target_include_directories(${PROJECT_NAME}
-        INTERFACE   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/inc>
-                    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+
+target_include_directories(${PROJECT_NAME}
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/inc>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+
 
 install(TARGETS ${PROJECT_NAME}
         EXPORT ${PROJECT_NAME}_Targets
@@ -20,7 +22,7 @@ install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file("crab-in-the-code-hpp-ConfigVersion.cmake"
+write_basic_package_version_file("crab-in-the-code-hppConfigVersion.cmake"
                                 VERSION ${PROJECT_VERSION}
                                 COMPATIBILITY SameMajorVersion)
 
@@ -39,4 +41,4 @@ install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
         "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/inc/crab-in-the-code-hpp DESTINATION INCLUDE)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/inc/crab_in_the_code_hpp DESTINATION INCLUDE)
